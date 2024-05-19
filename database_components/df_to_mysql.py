@@ -10,7 +10,7 @@ class SendDFtoMYSQLDB:
         self.mysql_db_name=mysql_db_name
 
         database_mysql_engine=DatabaseMYSQLEngine()
-        self.mysql_eninge=database_mysql_engine.create_mysql_engine(mysql_username=self.mysql_username, 
+        self.mysql_engine=database_mysql_engine.create_mysql_engine(mysql_username=self.mysql_username, 
                                                                     mysql_password=self.mysql_password, 
                                                                     mysql_host=self.mysql_host, 
                                                                     mysql_port=self.mysql_port, 
@@ -57,9 +57,8 @@ class SendDFtoMYSQLDB:
                     'penalty_shoot_out_score_against': Integer(),
                     'player_name': String(50)}
 
-        # Create table name read in from the env file###
         df.to_sql(name=output_table_name, 
-                  con=self.mysql_eninge,
+                  con=self.mysql_engine,
                   dtype=dtype_dict,
                   if_exists='replace', 
                   index=False)
